@@ -30,13 +30,13 @@ fields:
   default: now
 - name: author
   type: select
-  default: []
+  default: src/data/authors/ls-austin.md
   config:
     required: true
     options: []
     source:
-      type: documents
-      section: authors-data
+      type: pages
+      section: authors
       file: src/data/authors.json
       path: 
   label: Author
