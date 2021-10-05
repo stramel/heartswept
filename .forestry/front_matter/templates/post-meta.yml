@@ -19,7 +19,7 @@ fields:
   label: Tags
 - name: author
   type: select
-  default: []
+  default: src/data/authors.json
   config:
     required: true
     options: []
