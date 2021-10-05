@@ -1,4 +1,28 @@
 ---
 label: Site Info
 hide_body: true
-fields: []
+fields:
+- name: title
+  type: text
+  config:
+    required: true
+  label: Title
+- name: description
+  type: textarea
+  default: ''
+  config:
+    required: true
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Description
+- name: url
+  type: text
+  config:
+    required: true
+  label: URL
+- name: domain
+  type: text
+  config:
+    required: true
+  label: Domain
