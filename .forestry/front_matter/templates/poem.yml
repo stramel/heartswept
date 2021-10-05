@@ -48,4 +48,5 @@ fields:
   hidden: true
   default: "../../layouts/poem.astro"
 pages:
+- src/pages/poems/fran.md
 - src/pages/poems/where-did-she-go.md
