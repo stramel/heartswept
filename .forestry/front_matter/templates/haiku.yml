@@ -56,3 +56,8 @@ fields:
   label: Template
   hidden: true
   default: "../../layouts/haiku.astro"
+- name: meta
+  type: include
+  config: {}
+  template: post-meta
+  label: Meta
