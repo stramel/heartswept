@@ -2,7 +2,32 @@
 import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav.astro';
 
-const { content } = Astro.props;
+export async function getStaticPaths({paginate, rss}) {
+  const allAuthors = Astro.fetchContent('../data/authors/*.md');
+  const allPosts = Astro.fetchContent('./*.md');
+  const sortedPosts = allPosts.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+  
+
+//   // Generate an RSS feed from this collection of posts.
+//   // NOTE: This is disabled by default, since it requires `buildOptions.site` to be set in your "astro.config.mjs" file.
+//   //   rss({
+//   //     title: 'Don’s Blog',
+//   //     description: 'An example blog on Astro',
+//   //     customData: `<language>en-us</language>`,
+//   //     items: sortedPosts.map(item => ({
+//   //       title: item.title,
+//   //       description: item.description,
+//   //       link: item.url,
+//   //       pubDate: item.date,
+//   //     })),
+//   //   });
+
+  // Return a paginated collection of paths for all posts
+  return {pageSize: 1, props: { allAuthors}};
+}
+
+const { content, page, allAuthors } = Astro.props;
+console.log(allAuthors, page, content)
 ---
 
 <html>
@@ -63,7 +88,10 @@ const { content } = Astro.props;
       <h2 class="title">{content.title}</h2>
       <p class="description">{content.description}</p>
       <img class="img" src={content.image} alt="">
-      <article class="article">
+      <pre>
+        {JSON.stringify(content, null, 2)}
+      </pre>
+      <article class="article" style="text-align: center;">
         <slot />
       </article>
       <footer class="footer">
