@@ -55,4 +55,4 @@ fields:
     required: true
   label: Template
   hidden: true
-  default: "../../layouts/haiku.astro"
+  default: "../../layouts/poem.astro"
