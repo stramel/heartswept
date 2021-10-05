@@ -2,48 +2,48 @@
 label: Poem
 hide_body: false
 fields:
-  - name: title
-    type: text
-    config:
-      required: true
-    label: Title
-  - name: image
-    type: file
-    config:
-      maxSize: 64
-    label: Image
-  - name: tags
-    type: tag_list
-    default:
-      - poem
-    label: Tags
-  - name: date
-    type: datetime
-    label: Date
-    description: ""
-    config:
-      required: true
-      date_format:
-      time_format:
-      display_utc: false
-      export_format: YYYY-MM-DD
-    default: now
-  - name: author
-    type: select
-    default: src/data/authors.json
-    config:
-      required: true
-      options: []
-      source:
-        type: pages
-        section: authors
-        file:
-        path:
-    label: Author
-  - name: template
-    type: text
-    config:
-      required: true
-    label: Template
-    hidden: true
-    default: "../../layouts/poem.astro"
+- name: title
+  type: text
+  config:
+    required: true
+  label: Title
+- name: image
+  type: file
+  config:
+    maxSize: 64
+  label: Image
+- name: tags
+  type: tag_list
+  default:
+  - poem
+  label: Tags
+- name: date
+  type: datetime
+  label: Date
+  description: ''
+  config:
+    required: true
+    date_format: 
+    time_format: 
+    display_utc: false
+    export_format: YYYY-MM-DD
+  default: now
+- name: author
+  type: select
+  default: src/data/authors.json
+  config:
+    required: true
+    options: []
+    source:
+      type: pages
+      section: authors
+      file: 
+      path: 
+  label: Author
+- name: template
+  type: text
+  config:
+    required: true
+  label: Template
+  hidden: true
+  default: "../../layouts/poem.astro"

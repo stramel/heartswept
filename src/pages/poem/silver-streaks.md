@@ -3,7 +3,7 @@ tags:
 - poem
 - haiku
 date: 2021-10-05
-author: name
+author: src/data/authors.json
 template: "../../layouts/haiku.astro"
 title: Silver Streaks
 image: ''
