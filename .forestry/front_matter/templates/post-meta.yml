@@ -17,3 +17,15 @@ fields:
   type: tag_list
   default: []
   label: Tags
+- name: author
+  type: select
+  default: src/data/authors.json
+  config:
+    required: true
+    options: []
+    source:
+      type: pages
+      section: authors
+      file: 
+      path: 
+  label: Author
