@@ -1,0 +1,7 @@
+# Don't show diffs for generated files in github.
+public/uploads/** linguist-generated=true
+src/data/** linguist-generated=true
+src/pages/admin/** linguist-generated=true
+src/pages/haiku/** linguist-generated=true
+src/pages/poems/** linguist-generated=true
+src/pages/stories/** linguist-generated=true
