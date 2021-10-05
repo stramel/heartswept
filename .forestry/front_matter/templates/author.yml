@@ -20,3 +20,4 @@ fields:
   label: Slug
 pages:
 - src/data/authors/ls-austin.md
+- src/data/authors/ms.md
