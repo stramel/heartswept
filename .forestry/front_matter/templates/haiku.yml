@@ -48,3 +48,5 @@ fields:
   label: Template
   hidden: true
   default: "../../layouts/haiku.astro"
+pages:
+- src/pages/poem/peony-blossoms.md
