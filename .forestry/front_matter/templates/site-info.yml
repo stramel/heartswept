@@ -26,3 +26,5 @@ fields:
   config:
     required: true
   label: Domain
+pages:
+- src/data/site.json
