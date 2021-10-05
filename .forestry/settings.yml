@@ -19,6 +19,8 @@ sections:
   label: Stories
   create: documents
   match: "*.md"
+  templates:
+  - story
 - type: heading
   label: Meta
 - type: document
