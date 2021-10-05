@@ -7,12 +7,18 @@ sections:
 - type: heading
   label: Content
 - type: directory
-  path: src/pages/poem
-  label: Poems
+  path: src/pages/haiku
+  label: Haiku
   create: documents
   match: "*.md"
   templates:
   - haiku
+- type: directory
+  path: src/pages/poems
+  label: Poems
+  create: documents
+  match: "*.md"
+  templates:
   - poem
 - type: directory
   path: src/pages/story
