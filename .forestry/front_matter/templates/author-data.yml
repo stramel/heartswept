@@ -1,6 +1,7 @@
 ---
 label: Author Data
 hide_body: true
+display_field: name
 fields:
 - name: authors
   type: include
