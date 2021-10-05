@@ -49,6 +49,7 @@ fields:
   default: "../../layouts/poem.astro"
 pages:
 - src/pages/poems/a-clerihew.md
+- src/pages/poems/by-my-side.md
 - src/pages/poems/fran.md
 - src/pages/poems/santo-subito.md
 - src/pages/poems/sitting-by-the-sea.md
