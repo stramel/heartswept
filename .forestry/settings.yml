@@ -29,13 +29,6 @@ sections:
   - story
 - type: heading
   label: Data
-- type: directory
-  path: src/data/authors
-  label: Authors
-  create: documents
-  match: "*.md"
-  templates:
-  - author
 upload_dir: public/uploads
 public_path: "/uploads"
 front_matter_path: ''
