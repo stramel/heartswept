@@ -1,5 +1,12 @@
 {
-  "name": "LS Austin",
-  "profile_picture": "",
-  "bio": ""
+  "ls": {
+    "name": "LS Austin",
+    "image": "",
+    "bio": ""
+  },
+  "ms": {
+    "name": "MS",
+    "image": "",
+    "bio": ""
+  }
 }
