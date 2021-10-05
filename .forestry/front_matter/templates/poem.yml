@@ -39,14 +39,14 @@ fields:
   default: now
 - name: author
   type: select
-  default: []
+  default: src/data/authors.json
   config:
     required: true
     options: []
     source:
-      type: documents
-      section: authors-data
-      file: src/data/authors.json
+      type: pages
+      section: authors
+      file: 
       path: 
   label: Author
 - name: template
