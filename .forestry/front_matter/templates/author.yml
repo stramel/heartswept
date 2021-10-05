@@ -2,7 +2,7 @@
 label: Author
 hide_body: false
 fields:
-- name: title
+- name: name
   type: text
   config:
     required: true
