@@ -18,3 +18,5 @@ fields:
   config:
     required: true
   label: Slug
+pages:
+- src/data/authors/ls-austin.md
