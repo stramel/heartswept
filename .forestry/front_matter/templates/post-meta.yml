@@ -24,8 +24,8 @@ fields:
     required: true
     options: []
     source:
-      type: pages
+      type: documents
       section: authors
-      file: 
+      file: src/data/authors.json
       path: 
   label: Author
