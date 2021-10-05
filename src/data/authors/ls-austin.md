@@ -1,5 +1,0 @@
----
-title: LS Austin
-image: ''
-
----
