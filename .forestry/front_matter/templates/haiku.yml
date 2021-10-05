@@ -40,14 +40,14 @@ fields:
     default: now
   - name: author
     type: select
-    default: src/data/authors.json
+    default: []
     config:
       required: true
       options: []
       source:
-        type: pages
-        section: authors
-        file:
+        type: documents
+        section: authors-data
+        file: src/data/authors.json
         path:
     label: Author
   - name: template
@@ -56,4 +56,4 @@ fields:
       required: true
     label: Template
     hidden: true
-    default: "../../layouts/poem.astro"
+    default: "../../layouts/haiku.astro"

@@ -1,23 +1,24 @@
 ---
 label: Author
 hide_body: true
+display_field: name
 fields:
-- name: name
-  type: text
-  config:
-    required: true
-  label: Name
-- name: image
-  type: file
-  config:
-    maxSize: 64
-  label: Profile Picture
-- name: bio
-  type: textarea
-  default: ''
-  config:
-    required: false
-    wysiwyg: true
-    schema:
-      format: markdown
-  label: Bio
+  - name: name
+    type: text
+    config:
+      required: true
+    label: Name
+  - name: image
+    type: file
+    config:
+      maxSize: 64
+    label: Profile Picture
+  - name: bio
+    type: textarea
+    default: ""
+    config:
+      required: false
+      wysiwyg: true
+      schema:
+        format: markdown
+    label: Bio

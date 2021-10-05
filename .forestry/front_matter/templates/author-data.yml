@@ -1,12 +1,9 @@
 ---
 label: Author Data
 hide_body: true
-display_field: name
 fields:
-- name: authors
-  type: include
-  config: {}
-  template: author
-  label: Authors
-pages:
-- src/data/authors.json
+  - name: authors
+    type: include
+    config: {}
+    template: author
+    label: Authors
