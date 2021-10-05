@@ -49,5 +49,6 @@ fields:
   hidden: true
   default: "../../layouts/haiku.astro"
 pages:
+- src/pages/poem/bejeweled.md
 - src/pages/poem/joy-betrayed.md
 - src/pages/poem/peony-blossoms.md
