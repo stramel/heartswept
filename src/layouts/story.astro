@@ -1,6 +1,6 @@
 ---
-// import MainHead from '../components/MainHead.astro';
-// import Nav from '../components/Nav.astro';
+import MainHead from '../components/MainHead.astro';
+import Nav from '../components/Nav.astro';
 
 const { content } = Astro.props;
 ---
@@ -8,7 +8,7 @@ const { content } = Astro.props;
 <html>
   <head>
     <title>{content.title}</title>
-    <!-- <MainHead title={content.title} description={content.description} image={content.image} canonicalURL={Astro.request.canonicalURL} /> -->
+    <MainHead title={content.title} description={content.description} image={content.image} canonicalURL={Astro.request.canonicalURL} />
     <style lang="scss">
       .title {
         margin-top: 4rem;
@@ -57,7 +57,7 @@ const { content } = Astro.props;
   </head>
 
   <body>
-    <!-- <Nav /> -->
+    <Nav />
 
     <main class="wrapper">
       <h2 class="title">{content.title}</h2>
@@ -67,7 +67,7 @@ const { content } = Astro.props;
         <slot />
       </article>
       <footer class="footer">
-        <a class="posts" href="/posts">All Posts</a>
+        <a class="posts" href="/stories">All Stories</a>
       </footer>
     </main>
 
