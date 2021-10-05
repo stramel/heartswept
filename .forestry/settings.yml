@@ -6,6 +6,11 @@ webhook_url:
 sections:
 - type: heading
   label: Content
+- type: directory
+  path: src/pages/poem
+  label: Poems
+  create: documents
+  match: "*.md"
 upload_dir: uploads
 public_path: "/uploads"
 front_matter_path: ''
