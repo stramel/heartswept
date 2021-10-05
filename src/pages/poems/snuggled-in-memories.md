@@ -2,7 +2,7 @@
 tags:
 - poem
 date: 2021-10-05
-author: src/data/authors.json
+author: src/data/authors/ms.md
 template: "../../layouts/poem.astro"
 title: Snuggled In Memories
 image: ''
