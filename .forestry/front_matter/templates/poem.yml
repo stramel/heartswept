@@ -2,69 +2,69 @@
 label: Poem
 hide_body: false
 fields:
-  - name: title
-    type: text
-    config:
-      required: true
-    label: Title
-  - name: image
-    type: file
-    config:
-      maxSize: 64
-    label: Image
-  - name: tags
-    type: tag_list
-    default:
-      - poem
-    label: Tags
-  - name: date
-    type: datetime
-    label: Date
-    description: ""
-    config:
-      required: true
-      date_format:
-      time_format:
-      display_utc: false
-      export_format: YYYY-MM-DD
-    default: now
-  - name: author
-    type: select
-    default: []
-    config:
-      required: true
-      options: []
-      source:
-        type: documents
-        section: authors-data
-        file: src/data/authors.json
-        path:
-    label: Author
-  - name: template
-    type: text
-    config:
-      required: true
-    label: Template
-    hidden: true
-    default: "../../layouts/poem.astro"
+- name: title
+  type: text
+  config:
+    required: true
+  label: Title
+- name: image
+  type: file
+  config:
+    maxSize: 64
+  label: Image
+- name: tags
+  type: tag_list
+  default:
+  - poem
+  label: Tags
+- name: date
+  type: datetime
+  label: Date
+  description: ''
+  config:
+    required: true
+    date_format: 
+    time_format: 
+    display_utc: false
+    export_format: YYYY-MM-DD
+  default: now
+- name: author
+  type: select
+  default: []
+  config:
+    required: true
+    options: []
+    source:
+      type: documents
+      section: authors-data
+      file: src/data/authors.json
+      path: 
+  label: Author
+- name: template
+  type: text
+  config:
+    required: true
+  label: Template
+  hidden: true
+  default: "../../layouts/poem.astro"
 pages:
-  - src/pages/poems/a-clerihew.md
-  - src/pages/poems/alma-mater.md
-  - src/pages/poems/by-my-side.md
-  - src/pages/poems/divinely-conceived.md
-  - src/pages/poems/fran.md
-  - src/pages/poems/grandma-s-swing.md
-  - src/pages/poems/heavenly-blessed.md
-  - src/pages/poems/in-memory-of-mary-jo.md
-  - src/pages/poems/life-s-intersection.md
-  - src/pages/poems/love-has-a-hem.md
-  - src/pages/poems/make-way.md
-  - src/pages/poems/midnight-s-sorrow.md
-  - src/pages/poems/my-son-s-hands.md
-  - src/pages/poems/santo-subito.md
-  - src/pages/poems/sitting-by-the-sea.md
-  - src/pages/poems/snuggled-in-memories.md
-  - src/pages/poems/the-cranes.md
-  - src/pages/poems/the-sentinel.md
-  - src/pages/poems/where-did-she-go.md
-  - src/pages/poems/who-i-am.md
+- src/pages/poems/a-clerihew.md
+- src/pages/poems/alma-mater.md
+- src/pages/poems/by-my-side.md
+- src/pages/poems/divinely-conceived.md
+- src/pages/poems/fran.md
+- src/pages/poems/grandma-s-swing.md
+- src/pages/poems/heavenly-blessed.md
+- src/pages/poems/in-memory-of-mary-jo.md
+- src/pages/poems/life-s-intersection.md
+- src/pages/poems/love-has-a-hem.md
+- src/pages/poems/make-way.md
+- src/pages/poems/midnight-s-sorrow.md
+- src/pages/poems/my-son-s-hands.md
+- src/pages/poems/santo-subito.md
+- src/pages/poems/sitting-by-the-sea.md
+- src/pages/poems/snuggled-in-memories.md
+- src/pages/poems/the-cranes.md
+- src/pages/poems/the-sentinel.md
+- src/pages/poems/where-did-she-go.md
+- src/pages/poems/who-i-am.md

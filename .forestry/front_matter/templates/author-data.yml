@@ -2,8 +2,10 @@
 label: Author Data
 hide_body: true
 fields:
-  - name: authors
-    type: include
-    config: {}
-    template: author
-    label: Authors
+- name: authors
+  type: include
+  config: {}
+  template: author
+  label: Authors
+pages:
+- src/data/authors.json

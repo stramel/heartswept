@@ -2,62 +2,54 @@
 label: Haiku
 hide_body: false
 fields:
-  - name: title
-    type: text
-    config:
-      required: true
-    label: Title
-  - name: image
-    type: file
-    config:
-      maxSize: 64
-    label: Image
-  - name: tags
-    type: tag_list
-    default:
-      - poem
-      - haiku
-    label: Tags
-  - name: date
-    type: datetime
-    label: Date
-    description: ""
-    config:
-      required: true
-      date_format:
-      time_format:
-      display_utc: false
-      export_format: ""
-    default: now
-  - name: author
-    type: select
-    default: []
-    config:
-      required: true
-      options: []
-      source:
-        type: documents
-        section: authors-data
-        file: src/data/authors.json
-        path:
-    label: Author
-  - name: template
-    type: text
-    config:
-      required: true
-    label: Template
-    hidden: true
-    default: "../../layouts/haiku.astro"
+- name: title
+  type: text
+  config:
+    required: true
+  label: Title
+- name: image
+  type: file
+  config:
+    maxSize: 64
+  label: Image
+- name: tags
+  type: tag_list
+  default:
+  - poem
+  - haiku
+  label: Tags
+- name: date
+  type: datetime
+  label: Date
+  description: ''
+  config:
+    required: true
+    date_format: 
+    time_format: 
+    display_utc: false
+    export_format: ''
+  default: now
+- name: author
+  type: select
+  default: []
+  config:
+    required: true
+    options: []
+    source:
+      type: documents
+      section: authors-data
+      file: src/data/authors.json
+      path: 
+  label: Author
+- name: template
+  type: text
+  config:
+    required: true
+  label: Template
+  hidden: true
+  default: "../../layouts/haiku.astro"
 pages:
-  - src/pages/poem/bejeweled.md
-  - src/pages/poem/cascading-blanket.md
-  - src/pages/poem/joy-betrayed.md
-  - src/pages/poem/night-travels.md
-  - src/pages/poem/paintbrush.md
-  - src/pages/poem/peony-blossoms.md
-  - src/pages/poem/pinpoints.md
-  - src/pages/poem/reflecting.md
-  - src/pages/poem/silver-streaks.md
-  - src/pages/poem/spring-evening.md
-  - src/pages/poem/where-are-you.md
-  - src/pages/poem/winter-advance.md
+- src/pages/poem/bejeweled.md
+- src/pages/poem/cascading-blanket.md
+- src/pages/poem/paintbrush.md
+- src/pages/poem/where-are-you.md
