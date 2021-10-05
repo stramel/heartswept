@@ -7,3 +7,5 @@ fields:
   config: {}
   template: author
   label: Authors
+pages:
+- src/data/authors.json
