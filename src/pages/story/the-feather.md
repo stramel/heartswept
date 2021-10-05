@@ -2,7 +2,7 @@
 tags:
 - story
 date: 2021-10-05
-author: src/data/authors.json
+author: src/data/authors/ls-austin.md
 template: "../../layouts/story.astro"
 title: The Feather
 image: ''
