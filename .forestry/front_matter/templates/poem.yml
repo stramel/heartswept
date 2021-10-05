@@ -49,6 +49,7 @@ fields:
   default: "../../layouts/poem.astro"
 pages:
 - src/pages/poems/a-clerihew.md
+- src/pages/poems/alma-mater.md
 - src/pages/poems/by-my-side.md
 - src/pages/poems/divinely-conceived.md
 - src/pages/poems/fran.md
