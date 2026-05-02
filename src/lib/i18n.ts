@@ -8,6 +8,7 @@ const JP: Record<string, string> = {
   "More Haiku": "もっと俳句",
   "More Poem": "もっと詩",
   "More Story": "もっと物語",
+  About: "について",
 };
 
 export function jp(key: string): string {

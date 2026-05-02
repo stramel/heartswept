@@ -1,13 +1,13 @@
 ---
-import Base from '../layouts/Base.astro';
+import { sectionTitle } from "../lib/display";
+import Base from "../layouts/Base.astro";
 ---
 
 <Base title="About — HeartSwept">
   <main class="page-enter max-w-[720px] mx-auto px-8 lg:px-0 py-20 lg:py-28">
-
     <div class="text-label flex items-center gap-3 mb-6">
       <span class="inline-block w-6 h-px bg-vermilion"></span>
-      About · について
+      {sectionTitle("About")}
     </div>
 
     <h1 class="text-heading mb-8">HeartSwept</h1>
@@ -16,16 +16,24 @@ import Base from '../layouts/Base.astro';
 
     <div class="text-body space-y-6">
       <p>
-        HeartSwept is a curated literary anthology devoted to the quiet forms — haiku, lyric free verse, and the short story as breath. Each piece is chosen not for what it says, but for the space it leaves behind.
+        HeartSwept is a curated literary anthology devoted to the quiet forms —
+        haiku, lyric free verse, and the short story as breath. Each piece is
+        chosen not for what it says, but for the space it leaves behind.
       </p>
       <p>
-        The name comes from the Japanese concept of <em class="text-ink-mid not-italic font-medium">心に吹く風</em> — a wind that passes through the heart. These are not dramatic works. They are small weather.
+        The name comes from the Japanese concept of <em
+          class="text-ink-mid not-italic font-medium">心に吹く風</em
+        > — a wind that passes through the heart. These are not dramatic works. They
+        are small weather.
       </p>
       <p>
-        We publish seasonally, attending to the rhythms of the natural year as classical Japanese poetry always has: spring's loosening, summer's heat and firefly dusk, autumn's amber stillness, winter's austere clarity.
+        We publish seasonally, attending to the rhythms of the natural year as
+        classical Japanese poetry always has: spring's loosening, summer's heat
+        and firefly dusk, autumn's amber stillness, winter's austere clarity.
       </p>
       <p>
-        If you have a piece you believe belongs here, we invite you to submit. The only requirement is restraint — and that the work be true.
+        If you have a piece you believe belongs here, we invite you to submit.
+        The only requirement is restraint — and that the work be true.
       </p>
     </div>
 

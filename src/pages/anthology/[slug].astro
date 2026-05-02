@@ -158,7 +158,9 @@ const moreLabel = sectionTitle(`More ${type}`);
           <div
             class="bg-washi-warm border border-ink/10 p-8 relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-[2px] before:h-full before:bg-vermilion"
           >
-            <div class="text-label mb-4">{sectionTitle("About the Author")}</div>
+            <div class="text-label mb-4">
+              {sectionTitle("About the Author")}
+            </div>
             <div
               class="font-cormorant font-medium text-[1.25rem] text-ink mb-2"
             >
@@ -170,7 +172,7 @@ const moreLabel = sectionTitle(`More ${type}`);
           {
             related.length > 0 && (
               <div class="bg-washi-warm border border-ink/10 p-8">
-                <div class="text-label mb-4">More {type} · {moreLabel}</div>
+                <div class="text-label mb-4">{moreLabel}</div>
                 <ul class="list-none m-0 p-0">
                   {related.map((r, i) => (
                     <li
