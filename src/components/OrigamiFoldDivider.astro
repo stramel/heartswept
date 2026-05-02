@@ -1,0 +1,90 @@
+---
+const creases = [15, 30, 50, 70, 85];
+---
+
+<div class="origami-divider">
+  <div class="origami-divider-line">
+    {
+      creases.map((pct) => (
+        <div class="origami-divider-crease" style={`left:${pct}%`} />
+      ))
+    }
+  </div>
+
+  <div class="origami-divider-shape">
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 40 40"
+      fill="none"
+      aria-hidden="true"
+    >
+      <polygon
+        points="20,2 38,20 20,38 2,20"
+        stroke="currentColor"
+        stroke-width="1"
+        fill="none"></polygon>
+      <polygon
+        points="20,2 38,20 20,20"
+        stroke="currentColor"
+        stroke-width="0.5"
+        fill="currentColor"
+        fill-opacity="0.15"></polygon>
+      <polygon
+        points="20,20 2,20 20,38"
+        stroke="currentColor"
+        stroke-width="0.5"
+        fill="currentColor"
+        fill-opacity="0.1"></polygon>
+      <line
+        x1="20"
+        y1="2"
+        x2="20"
+        y2="38"
+        stroke="currentColor"
+        stroke-width="0.5"></line>
+      <line
+        x1="2"
+        y1="20"
+        x2="38"
+        y2="20"
+        stroke="currentColor"
+        stroke-width="0.5"></line>
+    </svg>
+  </div>
+
+  <div class="origami-divider-line">
+    {
+      creases.map((pct) => (
+        <div class="origami-divider-crease" style={`left:${pct}%`} />
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .origami-divider {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 5rem;
+    position: relative;
+  }
+  .origami-divider-line {
+    flex: 1;
+    height: 1px;
+    background: color-mix(in srgb, var(--color-ink) 10%, transparent);
+    position: relative;
+  }
+  .origami-divider-shape {
+    margin: 0 1.5rem;
+    color: var(--color-ink-ghost);
+    opacity: 0.5;
+  }
+  .origami-divider-crease {
+    position: absolute;
+    top: -4px;
+    width: 1px;
+    height: 9px;
+    background: color-mix(in srgb, var(--color-ink) 10%, transparent);
+  }
+</style>

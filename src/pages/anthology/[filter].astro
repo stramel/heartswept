@@ -1,0 +1,97 @@
+---
+import Base from "../../layouts/Base.astro";
+import PoemCard from "../../components/PoemCard.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const allPoems = await getCollection("anthology");
+  const sorted = allPoems.sort((a, z) => a.data.order - z.data.order);
+
+  return [
+    {
+      params: { filter: "haiku" },
+      props: {
+        label: "Haiku",
+        poems: sorted.filter((p) => p.data.type === "Haiku"),
+      },
+    },
+    {
+      params: { filter: "poem" },
+      props: {
+        label: "Poem",
+        poems: sorted.filter((p) => p.data.type === "Poem"),
+      },
+    },
+    {
+      params: { filter: "story" },
+      props: {
+        label: "Story",
+        poems: sorted.filter((p) => p.data.type === "Story"),
+      },
+    },
+  ];
+}
+
+interface Props {
+  label: "Haiku" | "Poem" | "Story";
+  poems: CollectionEntry<"poems">[];
+}
+
+const { filter } = Astro.params;
+const { label, poems } = Astro.props;
+---
+
+<Base title={`${label} — HeartSwept Anthology`}>
+  <main class="page-enter">
+    <div
+      class="px-8 lg:px-20 pt-16 lg:pt-20 pb-10 border-b border-ink/10 relative overflow-hidden"
+    >
+      <h1 class="text-heading mb-2">The Anthology</h1>
+      <p class="text-excerpt text-[0.95rem] mb-8">
+        Haiku, free verse, and short stories from the HeartSwept collection
+      </p>
+
+      <nav class="flex flex-wrap gap-0" aria-label="Filter by type">
+        <a
+          href="/anthology"
+          class="filter-tab text-cta px-6 py-[0.6rem] border border-ink/10 bg-transparent text-ink-soft transition-all duration-200 -mr-px no-underline hover:text-ink hover:bg-washi-warm"
+          >All</a
+        >
+        <a
+          href="/anthology/haiku"
+          aria-current={filter === "haiku" ? "page" : undefined}
+          class="filter-tab text-cta px-6 py-[0.6rem] border border-ink/10 bg-transparent text-ink-soft transition-all duration-200 -mr-px no-underline hover:text-ink hover:bg-washi-warm"
+          >Haiku</a
+        >
+        <a
+          href="/anthology/poem"
+          aria-current={filter === "poem" ? "page" : undefined}
+          class="filter-tab text-cta px-6 py-[0.6rem] border border-ink/10 bg-transparent text-ink-soft transition-all duration-200 -mr-px no-underline hover:text-ink hover:bg-washi-warm"
+          >Poem</a
+        >
+        <a
+          href="/anthology/story"
+          aria-current={filter === "story" ? "page" : undefined}
+          class="filter-tab text-cta px-6 py-[0.6rem] border border-ink/10 bg-transparent text-ink-soft transition-all duration-200 -mr-px no-underline hover:text-ink hover:bg-washi-warm"
+          >Story</a
+        >
+      </nav>
+    </div>
+
+    <div
+      class="px-8 lg:px-20 py-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5"
+    >
+      {poems.map((poem) => <PoemCard poem={poem} />)}
+    </div>
+  </main>
+</Base>
+
+<style>
+  .filter-tab[aria-current="page"] {
+    background: var(--color-vermilion);
+    color: white;
+    border-color: var(--color-vermilion);
+    z-index: 1;
+  }
+</style>

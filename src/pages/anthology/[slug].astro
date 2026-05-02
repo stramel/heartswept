@@ -1,0 +1,226 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { sectionTitle } from "../../lib/display";
+
+export async function getStaticPaths() {
+  const poems = await getCollection("anthology");
+  return poems.map((poem) => ({
+    params: { slug: poem.id },
+    props: { poem },
+  }));
+}
+
+interface Props {
+  poem: CollectionEntry<"anthology">;
+}
+const { poem } = Astro.props;
+const { title, titleJp, type, image, imageAlt } = poem.data;
+
+const [{ Content }, authorEntry, allPoems] = await Promise.all([
+  render(poem),
+  getEntry(poem.data.author),
+  getCollection("anthology"),
+]);
+
+const related = allPoems
+  .filter((p) => p.id !== poem.id && p.data.type === type)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
+const moreLabel = sectionTitle(`More ${type}`);
+---
+
+<Base title={`${title} — HeartSwept`}>
+  <main class="page-enter">
+    <article>
+      {
+        image && (
+          <div class="w-full h-[340px] sm:h-[280px] overflow-hidden relative">
+            <img
+              src={image}
+              alt={imageAlt}
+              class="w-full h-full object-cover block"
+            />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink/35" />
+          </div>
+        )
+      }
+      {
+        !image && (
+          <div class="w-full h-[220px] sm:h-[160px] bg-washi-deep flex flex-col items-center justify-center gap-3 border-b border-ink/10">
+            <svg
+              width="60"
+              height="60"
+              viewBox="0 0 120 120"
+              fill="none"
+              class="opacity-15 text-ink"
+              aria-hidden="true"
+            >
+              <polygon
+                points="60,10 110,60 60,110 10,60"
+                stroke="currentColor"
+                stroke-width="1.2"
+                fill="none"
+              />
+              <polygon
+                points="10,60 60,40 60,60"
+                stroke="currentColor"
+                stroke-width="0.6"
+                fill="currentColor"
+                fill-opacity="0.25"
+              />
+              <polygon
+                points="110,60 60,40 60,60"
+                stroke="currentColor"
+                stroke-width="0.6"
+                fill="currentColor"
+                fill-opacity="0.15"
+              />
+              <polygon
+                points="60,60 60,110 45,85"
+                stroke="currentColor"
+                stroke-width="0.6"
+                fill="currentColor"
+                fill-opacity="0.2"
+              />
+              <polygon
+                points="60,10 75,30 60,40"
+                stroke="currentColor"
+                stroke-width="0.6"
+                fill="currentColor"
+                fill-opacity="0.3"
+              />
+              <line
+                x1="60"
+                y1="10"
+                x2="60"
+                y2="110"
+                stroke="currentColor"
+                stroke-width="0.4"
+              />
+              <line
+                x1="10"
+                y1="60"
+                x2="110"
+                y2="60"
+                stroke="currentColor"
+                stroke-width="0.4"
+              />
+            </svg>
+            <span class="font-mono text-[0.65rem] tracking-[0.1em] text-ink-ghost">
+              {imageAlt}
+            </span>
+          </div>
+        )
+      }
+
+      <div
+        class="grid grid-cols-1 lg:grid-cols-[1fr_360px] max-w-[1200px] mx-auto w-full px-6 lg:px-20 gap-10 lg:gap-24 pt-12 pb-20 items-start"
+      >
+        <div>
+          <a
+            href="/anthology"
+            class="text-cta text-[0.8rem] text-ink-ghost hover:text-vermilion transition-colors duration-200 no-underline mb-8 inline-flex items-center gap-2 group"
+          >
+            <span
+              class="inline-block transition-transform duration-200 group-hover:-translate-x-1"
+              >←</span
+            >
+            Anthology
+          </a>
+
+          <div class="text-label mb-3">{sectionTitle(type)}</div>
+
+          <h1 class="text-heading leading-[1.1] mb-2">{title}</h1>
+          <div
+            class="font-noto font-[200] text-[0.85rem] tracking-[0.2em] text-ink-ghost mb-10"
+          >
+            {titleJp}
+          </div>
+
+          <div class="w-10 h-[2px] bg-vermilion mb-10"></div>
+
+          <div class={type === "story" ? "story-prose" : "poem-verse"}>
+            <Content />
+          </div>
+
+          <div class="mt-12 flex items-center gap-4">
+            <div class="w-6 h-px bg-vermilion"></div>
+            <span class="text-byline text-[0.95rem] tracking-[0.05em]"
+              >{authorEntry?.data.name}</span
+            >
+          </div>
+        </div>
+
+        <aside class="lg:sticky lg:top-[84px] space-y-6">
+          <div
+            class="bg-washi-warm border border-ink/10 p-8 relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-[2px] before:h-full before:bg-vermilion"
+          >
+            <div class="text-label mb-4">{sectionTitle("About the Author")}</div>
+            <div
+              class="font-cormorant font-medium text-[1.25rem] text-ink mb-2"
+            >
+              {authorEntry?.data.name}
+            </div>
+            <p class="text-excerpt">{authorEntry?.data.bio}</p>
+          </div>
+
+          {
+            related.length > 0 && (
+              <div class="bg-washi-warm border border-ink/10 p-8">
+                <div class="text-label mb-4">More {type} · {moreLabel}</div>
+                <ul class="list-none m-0 p-0">
+                  {related.map((r, i) => (
+                    <li
+                      class={`py-4 ${i < related.length - 1 ? "border-b border-ink/10" : ""} ${i === 0 ? "pt-0" : ""}`}
+                    >
+                      <a
+                        href={`/anthology/${r.id}`}
+                        class="group block no-underline"
+                      >
+                        <div class="text-label text-ink-ghost mb-1">
+                          {r.data.type}
+                        </div>
+                        <div class="font-cormorant text-base font-normal text-ink group-hover:text-vermilion transition-colors duration-200">
+                          {r.data.title}
+                        </div>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+        </aside>
+      </div>
+    </article>
+  </main>
+</Base>
+
+<style>
+  .poem-verse {
+    font-family: var(--font-cormorant);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.45rem;
+    line-height: 2;
+    color: var(--color-ink);
+  }
+  .poem-verse p {
+    margin-bottom: 2em;
+    white-space: pre-line;
+  }
+
+  .story-prose {
+    font-family: var(--font-lora);
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--color-ink-mid);
+  }
+  .story-prose p {
+    margin-bottom: 1.5em;
+    white-space: pre-line;
+  }
+</style>

@@ -1,0 +1,75 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
+import { sectionTitle } from '../lib/display';
+
+interface Props {
+  poem: CollectionEntry<'anthology'>;
+}
+
+const { poem } = Astro.props;
+const { title, type, author, image, imageAlt } = poem.data;
+const authorEntry = await getEntry(author);
+const isStory = type === 'Story';
+const slug = poem.id;
+
+const body = poem.body ?? '';
+const firstLine = body.trim().split('\n').find((l: string) => l.trim()) ?? '';
+const excerpt = type === 'Haiku'
+  ? firstLine
+  : firstLine.split('—')[0].trim() + (firstLine.includes('—') ? ' —…' : '…');
+---
+
+<a
+  href={`/anthology/${slug}`}
+  class={`poem-card group block bg-washi-warm border border-transparent hover:border-ink/10 hover:bg-white transition-colors duration-200 relative no-underline ${isStory ? 'story' : ''}`}
+>
+  <div class="w-full h-40 overflow-hidden flex-shrink-0">
+    {image
+      ? (
+          <img
+            src={image}
+            alt={imageAlt}
+            class="w-full h-full object-cover block transition-transform duration-500 group-hover:scale-[1.04]"
+            loading="lazy"
+          />
+        )
+      : (
+          <div class="w-full h-full bg-washi-deep flex flex-col items-center justify-center gap-2">
+            <svg width="44" height="44" viewBox="0 0 120 120" fill="none" class="opacity-20 text-ink" aria-hidden="true">
+              <polygon points="60,10 110,60 60,110 10,60" stroke="currentColor" stroke-width="1.2" fill="none" />
+              <polygon points="10,60 60,40 60,60" stroke="currentColor" stroke-width="0.6" fill="currentColor" fill-opacity="0.25" />
+              <polygon points="110,60 60,40 60,60" stroke="currentColor" stroke-width="0.6" fill="currentColor" fill-opacity="0.15" />
+              <polygon points="60,60 60,110 45,85" stroke="currentColor" stroke-width="0.6" fill="currentColor" fill-opacity="0.2" />
+              <polygon points="60,10 75,30 60,40" stroke="currentColor" stroke-width="0.6" fill="currentColor" fill-opacity="0.3" />
+              <line x1="60" y1="10" x2="60" y2="110" stroke="currentColor" stroke-width="0.4" />
+              <line x1="10" y1="60" x2="110" y2="60" stroke="currentColor" stroke-width="0.4" />
+            </svg>
+            <span class="font-mono text-[0.55rem] tracking-[0.08em] text-ink-ghost text-center px-6 opacity-70">
+              {imageAlt}
+            </span>
+          </div>
+        )
+    }
+  </div>
+
+  <div class="px-8 pt-5 pb-6">
+    <div class="text-label mb-3">
+      {sectionTitle(type)}
+    </div>
+    <div class={`font-cormorant font-normal leading-snug text-ink mb-3 ${isStory ? 'text-[1.1rem]' : 'text-[1.3rem]'}`}>
+      {title}
+    </div>
+    <div class="text-excerpt mb-5">
+      "{excerpt}"
+    </div>
+    <div class="flex items-center justify-between mt-auto">
+      <span class="text-byline text-[0.8rem] text-ink-ghost">
+        {authorEntry?.data.name}
+      </span>
+      <span class="text-[0.85rem] text-vermilion opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:translate-x-1 inline-block">
+        →
+      </span>
+    </div>
+  </div>
+</a>

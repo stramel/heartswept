@@ -1,0 +1,18 @@
+---
+import NavLink from "./NavLink.astro";
+import BrandLogo from "./BrandLogo.astro";
+---
+
+<header
+  class="sticky top-0 z-50 bg-washi/90 backdrop-blur-sm border-b border-ink/10 px-8 lg:px-12 flex items-center justify-between min-h-[64px]"
+>
+  <a href="/" class="no-underline flex-shrink-0">
+    <BrandLogo />
+  </a>
+
+  <nav class="flex items-center gap-8 sm:gap-10">
+    <NavLink label="Home" href="/" />
+    <NavLink label="Anthology" href="/anthology" />
+    <NavLink label="About" href="/about" />
+  </nav>
+</header>

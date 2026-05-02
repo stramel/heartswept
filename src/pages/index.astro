@@ -1,0 +1,124 @@
+---
+import Base from "../layouts/Base.astro";
+import OrigamiFoldDivider from "../components/OrigamiFoldDivider.astro";
+import PoemCard from "../components/PoemCard.astro";
+import { getCollection, getEntry } from "astro:content";
+import { sectionTitle } from "../lib/display";
+
+const anthology = await getCollection("anthology");
+const sorted = anthology.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+const featured = sorted.find((p) => p.data.featured)! ?? sorted[0];
+const recent = sorted.filter((p) => !p.data.featured).slice(0, 6);
+
+function getSeasonLabel() {
+  const m = new Date().getMonth();
+  if (m >= 2 && m <= 4) return "春 · Spring";
+  if (m >= 5 && m <= 7) return "夏 · Summer";
+  if (m >= 8 && m <= 10) return "秋 · Autumn";
+  return "冬 · Winter";
+}
+const seasonLabel = getSeasonLabel();
+const year = new Date().getFullYear();
+
+const featuredAuthor = await getEntry(featured.data.author);
+const featuredLines = featured
+  .body!.trim()
+  .split("\n")
+  .filter((l: string) => l.trim());
+---
+
+<Base title="HeartSwept — A curated anthology of quiet words">
+  <main class="page-enter">
+    <!-- ── HERO ── -->
+    <section
+      class="grid grid-cols-1 lg:grid-cols-2 items-center px-6 lg:px-20 py-16 lg:py-24 gap-12 lg:gap-16 relative overflow-hidden"
+    >
+      <div>
+        <div class="text-label flex items-center gap-3 mb-6">
+          <span class="inline-block w-6 h-px bg-vermilion"></span>
+          {seasonLabel}
+          {year}
+        </div>
+
+        <h1 class="text-display mb-6">
+          Words that<br />
+          <em class="italic text-vermilion">move</em> the<br />
+          heartswept
+        </h1>
+
+        <p class="text-body max-w-[36ch] mb-10">
+          A curated anthology of haiku, free verse, and short stories — each
+          piece a window into the space between breath and language.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-start gap-4">
+          <a
+            href="/anthology"
+            class="text-cta bg-vermilion text-white px-8 py-3 transition-all duration-200 hover:bg-vermilion-light hover:-translate-y-px no-underline"
+          >
+            Read the Anthology
+          </a>
+          <!-- <a
+            href={`/anthology/${featured.id}`}
+            class="text-cta bg-transparent text-ink-mid border border-ink/10 px-8 py-3 transition-all duration-200 hover:border-ink-mid hover:text-ink no-underline"
+          >
+            Featured Piece
+          </a> -->
+        </div>
+      </div>
+
+      <!-- Featured poem panel -->
+      <a
+        href={`/anthology/${featured.id}`}
+        class="relative bg-washi-warm border border-ink/10 p-10 lg:p-12 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(28,20,16,0.08)] no-underline
+               before:content-[''] before:absolute before:top-0 before:left-0 before:w-[3px] before:h-full before:bg-vermilion"
+      >
+        <div class="text-label mb-6">{sectionTitle("Featured")}</div>
+
+        <div
+          class="font-cormorant font-[300] italic text-[1.35rem] leading-[1.9] text-ink mb-6"
+        >
+          {featuredLines.map((line: string) => <div>{line}</div>)}
+        </div>
+
+        <div class="flex items-center justify-between">
+          <span class="text-byline">— {featuredAuthor.data.name}</span>
+          <span
+            class="font-noto font-[200] text-[0.6rem] tracking-[0.2em] uppercase text-ink-ghost border border-ink/10 px-2 py-1"
+          >
+            {sectionTitle(featured.data.type)}
+          </span>
+        </div>
+      </a>
+    </section>
+
+    <OrigamiFoldDivider />
+
+    <!-- ── RECENT WORKS ── -->
+    <section class="px-8 lg:px-20 py-16 lg:py-20">
+      <div
+        class="flex items-baseline justify-between mb-12 pb-4 border-b border-ink/10"
+      >
+        <h2 class="text-subheading flex items-center gap-4">
+          Recent Works
+          <span
+            class="font-noto font-[200] text-[0.85rem] tracking-[0.1em] text-ink-ghost"
+            >最新作</span
+          >
+        </h2>
+        <a
+          href="/anthology"
+          class="text-cta text-vermilion no-underline transition-opacity duration-200 hover:opacity-70"
+        >
+          View all →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+        {recent.map((poem) => <PoemCard poem={poem} />)}
+      </div>
+    </section>
+  </main>
+</Base>
